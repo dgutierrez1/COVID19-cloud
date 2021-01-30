@@ -1,9 +1,7 @@
 # COVID19-cloud
-
-This gist will describe the process to:
 1. Do a ETL process from GCP COVID public data into Azure BlobStorage
 2. Execute SQL queries from Databricks
-3. 
+3. Visualization
 
 # ETL to Azure Blob Storage
 The COVID 19 open data initially is located in Big Query. Although Big Query is not an storage query it is the only way access the data.
