@@ -14,6 +14,7 @@ Open the `covid19_open_data` table and select `Copy Table`
 ![alt text](./imgs/copy-table.png)
 
 Then select the project, dataset and table you want to copy it into
+
 ![alt text](./imgs/copy-table1.png)
 
 A Storage Account needs to be created on Azure. On the Storage Account set the account name and leave the other fields as default. Once the storage account is created and deployed, go into the storage account and on the "Containers" section create a new container with a name of your choosing.
@@ -22,8 +23,28 @@ Now on you azure account create a Data Factory, once created go into the Monitor
 
 On the pipeline activities add a Copy data activity. After naming the activity, the source dataset needs to be setup. Create a new soruce data set and select Google BigQuery. Once selected BigQuery as the source open/edit it.
 
-Here a new linked services needs to be created. Enter your project id, clien id and client secret.
+Here a new linked services needs to be created. We need to 
 ![alt text](./imgs/linkd-service.png)
+
+For the Client id and the Client secret we need to go to the credential section on inside API & Services. If there are no credentials created yet, go CREATE CREDENTIALS and select OAuth client ID.
+
+![alt text](./imgs/create-api-key.png)
+
+Select Desktop App on the dropdown
+
+![alt text](./imgs/cred-type.png)
+
+Once the OAuth client is created you should have the Client id and the Client secret. 
+
+We are missing the refresh token, go get is we need a couple more steps.
+
+Go to this url, replacing <CLIENT_ID> with your Client id.
+
+`https://accounts.google.com/o/oauth2/v2/auth?client_id=<CLIENT_ID>&redirect_uri=urn:ietf:wg:oauth:2.0:oob&state=GBQAUthTest&access_type=offline&scope=https://www.googleapis.com/auth/bigquery&response_type=code`
+
+On that url you should login into your Google account and 
+
+
 
 
 # Connect to Databricks
