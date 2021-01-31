@@ -40,9 +40,42 @@ Go to this url, replacing <CLIENT_ID> with your Client id.
 
 `https://accounts.google.com/o/oauth2/v2/auth?client_id=<CLIENT_ID>&redirect_uri=urn:ietf:wg:oauth:2.0:oob&state=GBQAUthTest&access_type=offline&scope=https://www.googleapis.com/auth/bigquery&response_type=code`
 
-On that url you should login into your Google account and 
+On that url you should login into your Google account and grant access 
+
+![alt text](./imgs/acc-permissions.png)
+
+Once the access is granted a Authorization code is generated. Note this code to be used in the next step.
+
+Now go need to go do an HTTP POST request to https://www.googleapis.com/oauth2/v4/token using the previous data.
+
+![alt text](./imgs/request.png)
+
+If the data is correct you will receive a response status 200 with the Refresh Token. Take note of the Refresh token.
+
+![alt text](./imgs/response.png)
+
+Use the Refresh token on the linked service setup with the other attributes already collected. Try testing the connection before creating, if it fails the Refresh token could have expired.
+
+You should be able to select the table and preview the data
+
+![alt text](./imgs/table.png)
+
+Then on the sink tab select `New+`, then look for BlobStorage, and on the format type select "Parquet". 
+
+![alt text](./imgs/parquet.png)
+
+Import shemas from the data structure
+
+![alt text](./imgs/schema.png)
 
 
+Select `Validate all` if no erros are displayed select `Publish all`.
+
+One the publishing has completed trigger the execution
+
+![alt text](./imgs/trigger.png)
+
+When the execution has completed a new file should have been created on the storage container.
 
 
 # Connect to Databricks
